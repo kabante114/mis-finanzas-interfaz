@@ -26,6 +26,7 @@
   const code=error?.code||'',message=error?.message||'';
   if(code==='over_request_rate_limit'||/security purposes|after \d+|wait|interval|segundos/i.test(message))return 'Debes esperar antes de solicitar otro enlace. Vuelve a intentarlo más tarde.';
   if(error?.status===429||code==='over_email_send_rate_limit')return 'Se ha alcanzado el límite de envíos de recuperación. Vuelve a intentarlo más tarde.';
+  if(error?.status>=500)return 'El servidor no pudo tramitar el correo de recuperación. No se ha confirmado el envío; vuelve a intentarlo más tarde.';
   if(error?.name==='AuthRetryableFetchError'||error?.name==='TypeError'||!error?.status)return 'No se pudo conectar con el servicio. No podemos confirmar la solicitud; revisa tu conexión.';
   return 'No se pudo solicitar la recuperación. Vuelve a intentarlo más tarde.';
  }
