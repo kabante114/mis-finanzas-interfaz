@@ -1,6 +1,8 @@
 (function(root){
  'use strict';
- let client,session,resolveReady,closed=false,authorized=false,recoveryMode=false,restartRequired=false;
+ const entryParams=new URLSearchParams(root.location.hash.slice(1));
+ // Capture invite/recovery intent before the SDK consumes and removes the fragment.
+ let client,session,resolveReady,closed=false,authorized=false,recoveryMode=['invite','recovery'].includes(entryParams.get('type'))&&entryParams.has('access_token'),restartRequired=false;
  const ready=new Promise(r=>resolveReady=r);
  const el=id=>document.getElementById(id);
  const status=message=>{el('authStatus').textContent=message;};
@@ -9,7 +11,7 @@
  const storage={getItem:k=>localStorage.getItem(namespace()+k),setItem:(k,v)=>localStorage.setItem(namespace()+k,v),removeItem:k=>localStorage.removeItem(namespace()+k)};
  async function accept(s){
   session=s;authorized=false;
-  if(recoveryMode){el('authGate').hidden=false;el('authForm').hidden=true;el('authRecovery').hidden=false;return;}
+  if(recoveryMode&&s){el('authGate').hidden=false;el('authForm').hidden=true;el('authRecovery').hidden=false;status('Establece tu contraseña personal. No la compartas.');return;}
   if(!s){el('authGate').hidden=false;el('financeApp').hidden=true;el('syncBar').hidden=true;status('Introduce tu correo y contraseña para acceder.');return;}
   // Check owner authorization and backend readiness BEFORE revealing the app or reading cache.
   const {error}=await client.rpc('finance_read_state');

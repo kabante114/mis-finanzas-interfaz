@@ -5,8 +5,9 @@ no forman parte de este repositorio. No habilitar ejemplos con datos reales ni p
 
 ## Estado
 
-Login y almacenamiento preparados para Supabase. Hasta configurar el proyecto, la pantalla
-indica que el acceso está pendiente y bloquea la aplicación. No hay usuario ni contraseña demo.
+Login y almacenamiento conectados a Supabase. Altas públicas y accesos anónimos desactivados;
+la base de datos admite únicamente al propietario invitado. No hay usuario ni contraseña demo.
+El propietario debe aceptar su invitación y establecer la contraseña personalmente.
 La versión anterior continúa disponible por separado; esta publicación no migra sus datos.
 
 `config.js` admite únicamente URL del proyecto y una clave **publishable**, que es pública por
@@ -16,11 +17,11 @@ de datos; ocultar la interfaz no sustituye esos controles.
 
 ## Continuación
 
-1. El propietario completa el alta y acceso en Supabase.
-2. Configurar SQL, usuario permitido y correo/contraseña en el proveedor; no en Git.
-3. Probar denegación a anónimos y otra cuenta, conflictos de escritura y recuperación de acceso.
-4. Importar el estado actual por un canal privado y verificarlo antes de cambiar accesos.
-5. Configurar los dos valores públicos de `config.js` y publicar una revisión nueva.
+1. El propietario acepta la invitación y define su contraseña; nunca se almacena en Git.
+2. Verificar login y recuperación reales. SQL ya ha pasado pruebas sintéticas de autorización,
+   validación y conflictos secuenciales; no equivalen a una prueba real entre dispositivos.
+3. Importar el estado actual por un canal privado y verificarlo antes de cambiar accesos.
+4. Confirmar la misma revisión y datos desde móvil y ordenador.
 
 No se garantiza disponibilidad absoluta ni arranque offline. El plan gratuito del proveedor
 puede pausarse por inactividad; no se contrata ningún plan de pago automáticamente.
