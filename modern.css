@@ -144,6 +144,12 @@ body:has(#authGate:not([hidden])) { padding-bottom: 0; }
 .login-card button[type=submit] { min-height: 48px; width: 100%; border: 0; border-radius: 11px; font: inherit; font-weight: 650; color: #fff; background: #315cdb; cursor: pointer; }
 .login-card button:disabled { opacity: .55; cursor: wait; }
 .login-card button[type=button] { min-height: 42px; padding: 8px 12px; border: 1px solid var(--line); background: var(--card); color: var(--accent); border-radius: 10px; font-family: inherit; cursor: pointer; }
+.auth-password { position: relative; min-width: 0; }
+.login-card .auth-password input { padding-right: 60px; min-width: 0; box-sizing: border-box; }
+.login-card .auth-password-toggle { position: absolute; right: 3px; top: 3px; min-width: 44px; min-height: 44px; padding: 8px; display: grid; place-items: center; background: transparent; border-color: transparent; }
+.auth-password-toggle .auth-eye-slash { display: none; }
+.auth-password-toggle[aria-pressed=true] .auth-eye-slash { display: block; }
+.login-card button:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
 .login-card small { color: var(--muted); font-size: 11px; line-height: 1.7; }
 .login-card [role=alert] { color: var(--red); font-size: 13px; }
 .login-card [role=status] { color: var(--muted); font-size: 13px; }
