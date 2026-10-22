@@ -1,0 +1,10 @@
+.DS_Store
+node_modules/
+outputs/
+tests/
+.env*
+*.pem
+*.xls
+*.xlsx
+*datos*.json
+*respaldo*.json
